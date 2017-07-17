@@ -54,7 +54,7 @@
                           (v/centroid))]
     (v/similar-vectors vector-table labels centroid)))
 
-(defn classifier [items]
+(defn classifier [tokenizer items]
   (let [iterator (ItemLabelAwareIterator. items)
         vectors  (vectors iterator)]
     (fn [text] (classify vectors iterator tokenizer text))))
@@ -68,18 +68,18 @@
   (def v (vectors i))
 
   (classify v i tokenizer (u/slurp-from-classpath "paravec/unlabeled/finance/f01.txt"))
-  ;; => (["finance" 0.42245012521743774] ["science" -0.00961653608828783] ["health" -0.028964674100279808])
+  ;; => (["finance" 0.7510349750518799] ["science" -0.16607993841171265] ["health" -0.3732961118221283])
 
   (classify v i tokenizer (u/slurp-from-classpath "paravec/unlabeled/health/f01.txt"))
-  ;; => (["health" 0.5211763381958008] ["science" 0.001582252443768084] ["finance" -0.3309013843536377])
+  ;; => (["health" 0.5860732197761536] ["finance" -0.07874766737222672] ["science" -0.09755710512399673])
 
   (.wordsNearest v "bank" 10)
-  ;; => #{"suisse" "jpmorgan" "sachs" "fact" "blocked" "citi" "takeover" "goldman" "deutsche" "described"}
+  ;; => ["citi" "suisse" "goldman" "sachs" "jpmorgan" "merrill" "deutsche" "credit" "limited-purpose" "serve"]
 
   (.wordsNearest v "oil" 10)
-  ;; => #{"government" "like" "contract" "gas" "standardized" "gasoline" "prices" "heating" "futures" "crude"}
+  ;; => ["heating" "prices" "gasoline" "gas" "crude" "palladium" "effect" "platinum" "transparent" "standardized"]
 
   (.wordsNearest v "learning" 10)
-  ;; => #{"algorithms" "discover" "semi-supervised" "learn" "unsupervised" "find" "learns" "multiple" "low-dimensional" "representation"}}
+  ;; => ["algorithms" "learn" "machine" "recognition" "computational" "aim" "multilinear" "signal" "tasks" "infeasible"]
 
   )

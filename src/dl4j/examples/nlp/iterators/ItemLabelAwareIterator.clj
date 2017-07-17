@@ -14,23 +14,30 @@
              :labels (distinct (map :class items))
              :index 0})]))
 
-(defn- -hasNextDocument [this]
+(defn- -hasNext [this]
   (let [{:keys [items index]} @(.state this)]
     (< index (count items))))
 
-(defn- -nextDocument [this]
+(defn- -hasNextDocument [this]
+  (-hasNext this))
+
+(defn- -next [this]
   (let [{:keys [items index]}    @(.state this)
         {:keys [class features]} (get items index)]
-    (when (not (-hasNextDocument this))
+    (when (not (-hasNext this))
       (throw (IndexOutOfBoundsException. "There is no next document")))
     (dosync (alter (.state this) assoc :index (inc index)))
-    (doto
-      (LabelledDocument.)
+    (doto (LabelledDocument.)
       (.setContent features)
       (.setLabel class))))
 
+(defn- -nextDocument [this]
+  (-next this))
+
 (defn- -reset [this]
   (dosync (alter (.state this) assoc :index 0)))
+
+(defn- -shutdown [this])
 
 (defn -getLabelsSource [this]
   (let [{:keys [labels]} @(.state this)]

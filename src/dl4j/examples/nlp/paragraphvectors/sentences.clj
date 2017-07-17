@@ -40,9 +40,12 @@
   (def v (vectors (iterator "raw_sentences.txt")))
 
   (println "9836/12493 ('This is my house .'/'This is my world .') similarity:" (.similarity v "DOC_9835" "DOC_12492"))
+  ;; similarity: 0.7573885917663574
 
   (println "6348/3721 ('This is my case .'/'This is my way .') similarity:" (.similarity v "DOC_6347" "DOC_3720"))
+  ;; similarity: 0.917813777923584
 
   (println "3721/9853 ('This is my way .'/'We now have one .') similarity:" (.similarity v "DOC_3720" "DOC_9852"))
+  ;; similarity: 0.5390669703483582
 
   )

@@ -33,12 +33,12 @@
   (def v (vectors (iterator "raw_sentences.txt")))
 
   (.wordsNearest v "president" 10)
-  ;; => #{"law" "police" "government" "united" "director" "center" "west" "federal" "state" "former"}
+  ;; => ["center" "state" "west" "government" "law" "federal" "police" "former" "director" "company"]
 
   (.wordsNearest v "country" 10)
-  ;; #{"law" "world" "business" "center" "federal" "national" "company" "state" "house" "group"}
+  ;; => ["house" "company" "center" "state" "group" "federal" "business" "national" "former" "program"]
 
   (.wordsNearest v "team" 10)
-  ;; => #{"market" "country" "game" "business" "national" "war" "company" "program" "family" "group"}
+  ;; => ["company" "program" "country" "national" "game" "season" "family" "war" "group" "market"]
 
   )
