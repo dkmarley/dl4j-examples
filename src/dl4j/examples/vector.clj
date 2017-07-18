@@ -4,14 +4,6 @@
            (org.nd4j.linalg.ops.transforms Transforms)
            (org.nd4j.linalg.factory Nd4j)))
 
-(defn slurp-from-classpath
-  "Slurps a file from the classpath."
-  [path]
-  (or (some-> path
-              io/resource
-              slurp)
-      (throw (FileNotFoundException. path))))
-
 (defn vocab-tokens [vocab tokens]
   (filter #(.containsWord vocab %) tokens))
 
