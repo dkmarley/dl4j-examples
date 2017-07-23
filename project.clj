@@ -1,4 +1,4 @@
-(defproject dl4j-examples "0.1.0-SNAPSHOT"
+(defproject dl4j-examples "0.1.1-SNAPSHOT"
   :description "Examples from DL4J in Clojure"
   :url "https://github.com/dkmarley/dl4j-examples"
   :license {:name "Eclipse Public License"
