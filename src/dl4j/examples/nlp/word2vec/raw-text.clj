@@ -33,4 +33,7 @@
   (.wordsNearest v "team" 10)
   ; => ["company" "program" "country" "national" "game" "season" "family" "war" "group" "market"]
 
+  (.wordsNearest v "day" 10)
+  ; => ["night" "week" "year" "game" "season" "time" "-" "office" "group" "show"]
+
   )
